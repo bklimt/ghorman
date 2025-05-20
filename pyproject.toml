@@ -1,0 +1,9 @@
+[project]
+name = "ghorman"
+description = "playing with 3D ray tracing"
+version = "2025.05.18"
+requires-python = ">=3.13"
+dependencies = [
+  "numpy>=2.2, <2.3"
+]
+readme = "README.md"
