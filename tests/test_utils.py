@@ -1,28 +1,64 @@
+from numpy import float64
 
-from ghorman.utils import equal, point, vector
+from ghorman.utils import equal, magnitude, point, vector
 
 
 def test_point():
     v = point(1, 2, 3)
-    assert equal(v[0], 1)
-    assert equal(v[1], 2)
-    assert equal(v[2], 3)
-    assert equal(v[3], 1)
+    assert equal(v[0], float64(1))
+    assert equal(v[1], float64(2))
+    assert equal(v[2], float64(3))
+    assert equal(v[3], float64(1))
 
 
 def test_vector():
     v = vector(1, 2, 3)
-    assert equal(v[0], 1)
-    assert equal(v[1], 2)
-    assert equal(v[2], 3)
-    assert equal(v[3], 0)
+    assert equal(v[0], float64(1))
+    assert equal(v[1], float64(2))
+    assert equal(v[2], float64(3))
+    assert equal(v[3], float64(0))
 
 
 def test_addition():
     p = point(1, 2, 3)
     v = vector(4, 5, 6)
     s = p + v
-    assert equal(s[0], 5)
-    assert equal(s[1], 7)
-    assert equal(s[2], 9)
-    assert equal(s[3], 1)
+    assert equal(s, point(5, 7, 9))
+
+
+def test_subtracting_vector_from_point():
+    p = point(1, 2, 3)
+    v = vector(4, 5, 6)
+    s = p - v
+    assert equal(s, point(-3, -3, -3))
+
+
+def test_subtracting_tow_vectors():
+    v1 = vector(5, 7, 9)
+    v2 = vector(4, 5, 6)
+    s = v1 - v2
+    assert equal(s, vector(1, 2, 3))
+
+
+def test_negating_vector():
+    v = vector(5, 7, 9)
+    s = -v
+    assert equal(s, vector(-5, -7, -9))
+
+
+def test_multiplying_vector_by_scalar():
+    v = vector(5, 7, 9)
+    s = 3.5 * v
+    assert equal(s, vector(17.5, 24.5, 31.5))
+
+
+def test_dividing_vector_by_scalar():
+    v = vector(5, 7, 9)
+    s = v / 2
+    assert equal(s, vector(2.5, 3.5, 4.5))
+
+
+def test_magnitude():
+    v = vector(3, 4, 0)
+    s = magnitude(v)
+    assert equal(s, float64(5))

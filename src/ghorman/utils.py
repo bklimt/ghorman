@@ -1,19 +1,35 @@
 
-from math import isclose
-from numpy import array, float64
+from numpy import allclose, array, float64, isclose, ndarray, sqrt
 from numpy.typing import NDArray
-from typing import Tuple
+from typing import Tuple, overload
 
 EPSILON = 0.00001
 
 
 def point(x: float, y: float, z: float) -> NDArray[float64]:
-    return array([x, y, z, 1.0])
+    return array([x, y, z, 1.0], dtype=float64)
 
 
 def vector(x: float, y: float, z: float) -> NDArray[float64]:
-    return array([x, y, z, 0.0])
+    return array([x, y, z, 0.0], dtype=float64)
 
 
-def equal(f1: float, f2: float) -> bool:
-    return isclose(f1, f2, abs_tol=EPSILON)
+@overload
+def equal(x: float64, y: float64) -> bool:
+    ...
+
+
+@overload
+def equal(x: NDArray[float64], y: NDArray[float64]) -> bool:
+    ...
+
+
+def equal(x, y) -> bool:
+    if isinstance(x, ndarray):
+        return allclose(x, y, atol=EPSILON)
+    else:
+        return isclose(x, y, atol=EPSILON)
+
+
+def magnitude(v) -> float64:
+    return sqrt(v.dot(v))
