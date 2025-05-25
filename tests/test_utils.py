@@ -1,6 +1,6 @@
 from numpy import float64
 
-from ghorman.utils import cross, equal, magnitude, normalize, point, vector
+from ghorman.utils import color, cross, equal, hadamard_product, magnitude, normalize, point, vector
 
 
 def test_point():
@@ -85,3 +85,9 @@ def test_cross_product():
     v2 = vector(2, 3, 4)
     assert equal(cross(v1, v2), vector(-1, 2, -1))
     assert equal(cross(v2, v1), vector(1, -2, 1))
+
+
+def test_multiply_colors():
+    c1 = color(1, 0.2, 0.4)
+    c2 = color(0.9, 1, 0.1)
+    assert equal(hadamard_product(c1, c2), color(0.9, 0.2, 0.04))
