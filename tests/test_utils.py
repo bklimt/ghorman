@@ -1,6 +1,6 @@
 from numpy import float64
 
-from ghorman.utils import equal, magnitude, normalize, point, vector
+from ghorman.utils import cross, equal, magnitude, normalize, point, vector
 
 
 def test_point():
@@ -78,3 +78,10 @@ def test_dot_product():
     v1 = vector(1, 2, 3)
     v2 = vector(2, 3, 4)
     assert equal(v1.dot(v2), float64(20))
+
+
+def test_cross_product():
+    v1 = vector(1, 2, 3)
+    v2 = vector(2, 3, 4)
+    assert equal(cross(v1, v2), vector(-1, 2, -1))
+    assert equal(cross(v2, v1), vector(1, -2, 1))
