@@ -33,3 +33,7 @@ def equal(x, y) -> bool:
 
 def magnitude(v) -> float64:
     return sqrt(v.dot(v))
+
+
+def normalize(v) -> NDArray[float64]:
+    return v / magnitude(v)
