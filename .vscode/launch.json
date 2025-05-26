@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "demo",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "src/ghorman/demo.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}
