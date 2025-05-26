@@ -7,7 +7,7 @@ from typing import Generator
 
 from ghorman.canvas import pixel_at, write_pixel
 from ghorman.color import color, hadamard_product, pygame_color
-from ghorman.utils import equal, normalize, point, vector
+from ghorman.math import equal, normalize, point, vector
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600

@@ -1,7 +1,7 @@
 
 from numpy import float64
 
-from ghorman.utils import cross, equal, magnitude, matrix, multiply, normalize, point, vector
+from ghorman.math import cross, equal, magnitude, matrix, multiply, normalize, point, vector
 
 
 def test_point():
