@@ -25,6 +25,13 @@ def test_pygame(pygame_surface: pygame.Surface):
     assert pygame_surface.get_at((0, 0)) == pygame.Color((255, 0, 0))
 
 
+def test_color_conversion():
+    c1 = color(0.2, 0.4, 0.6)
+    c2 = pygame.Color((51, 102, 153))
+    assert pygame_color(c1) == c2
+    assert equal(pygame_color(c2), c1)
+
+
 def test_multiply_colors():
     c1 = color(1, 0.2, 0.4)
     c2 = color(0.9, 1, 0.1)
