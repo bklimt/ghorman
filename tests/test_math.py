@@ -1,7 +1,7 @@
 
 from numpy import float64
 
-from ghorman.math import cross, equal, magnitude, matrix, multiply, normalize, point, vector
+from ghorman.math import cross, equal, identity, magnitude, matrix, multiply, normalize, point, vector
 
 
 def test_point():
@@ -126,3 +126,37 @@ def test_matrix_array_multiplication():
     expected = point(18, 24, 33)
 
     assert equal(c, expected)
+
+
+def test_identity_matrix():
+    a = matrix([
+        [0, 1, 2, 4],
+        [1, 2, 4, 8],
+        [2, 4, 8, 16],
+        [4, 8, 16, 32],
+    ])
+    b = multiply(a, identity())
+    assert equal(b, a)
+
+    a = point(1, 2, 3)
+    b = multiply(a, identity())
+    assert equal(b, a)
+
+
+def test_transpose():
+    a = matrix([
+        [0, 9, 3, 0],
+        [9, 8, 0, 8],
+        [1, 8, 5, 3],
+        [0, 0, 5, 8],
+    ])
+    b = a.transpose()
+
+    expected = matrix([
+        [0, 9, 1, 0],
+        [9, 8, 8, 0],
+        [3, 0, 5, 5],
+        [0, 8, 3, 8],
+    ])
+
+    assert equal(b, expected)

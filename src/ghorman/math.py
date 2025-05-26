@@ -52,3 +52,7 @@ def cross(a: NDArray[np.float64], b: NDArray[np.float64]) -> NDArray[np.float64]
 
 def multiply(a: NDArray[np.float64], b: NDArray[np.float64]) -> NDArray[np.float64]:
     return np.matmul(a, b)
+
+
+def identity() -> NDArray[np.float64]:
+    return np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]], dtype=np.float64)
