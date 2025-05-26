@@ -1,7 +1,7 @@
 
 from numpy import float64
 
-from ghorman.math import cross, equal, identity, magnitude, matrix, multiply, normalize, point, vector
+from ghorman.math import cross, det, equal, identity, magnitude, matrix, minor, multiply, normalize, point, submatrix, vector
 
 
 def test_point():
@@ -160,3 +160,46 @@ def test_transpose():
     ])
 
     assert equal(b, expected)
+
+
+def test_deteriminant():
+    a = matrix([
+        [1, 5],
+        [-3, 2],
+    ])
+    d = det(a)
+
+    assert equal(d, float64(17))
+
+
+def test_submatrix():
+    m = matrix([
+        [1, 5, 0],
+        [-3, 2, 7],
+        [0, 6, -3],
+    ])
+
+    assert equal(submatrix(m, 0, 2), matrix([[-3, 2], [0, 6]]))
+
+    m = matrix([
+        [-6, 1, 1, 6],
+        [-8, 5, 8, 6],
+        [-1, 0, 8, 2],
+        [-7, 1, -1, 1],
+    ])
+
+    assert equal(submatrix(m, 2, 1), matrix([
+        [-6, 1, 6],
+        [-8, 8, 6],
+        [-7, -1, 1],
+    ]))
+
+
+def test_minor():
+    a = matrix([
+        [3, 5, 0],
+        [2, 1, -7],
+        [6, -1, 5],
+    ])
+
+    assert equal(minor(a, 1, 0), float64(25))
