@@ -4,6 +4,7 @@ description = "playing with 3D ray tracing"
 version = "2025.05.18"
 requires-python = ">=3.13"
 dependencies = [
-  "numpy>=2.2, <2.3"
+  "numpy>=2.2, <2.3",
+  "pygame>=2.6, <2.7"
 ]
 readme = "README.md"

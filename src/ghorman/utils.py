@@ -1,5 +1,6 @@
 
 import numpy as np
+
 from numpy.typing import NDArray
 from typing import overload
 
@@ -12,10 +13,6 @@ def point(x: float, y: float, z: float) -> NDArray[np.float64]:
 
 def vector(x: float, y: float, z: float) -> NDArray[np.float64]:
     return np.array([x, y, z, 0.0], dtype=np.float64)
-
-
-def color(r: float, g: float, b: float) -> NDArray[np.float64]:
-    return np.array([r, g, b], dtype=np.float64)
 
 
 @overload
@@ -47,7 +44,3 @@ def cross(a: NDArray[np.float64], b: NDArray[np.float64]) -> NDArray[np.float64]
     return vector(a[1] * b[2] - a[2] * b[1],
                   a[2] * b[0] - a[0] * b[2],
                   a[0] * b[1] - a[1] * b[0])
-
-
-def hadamard_product(c1: NDArray[np.float64], c2: NDArray[np.float64]) -> NDArray[np.float64]:
-    return color(c1[0] * c2[0], c1[1] * c2[1], c1[2] * c2[2])
