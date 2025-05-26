@@ -2,7 +2,7 @@
 import numpy as np
 
 from numpy.typing import NDArray
-from typing import overload
+from typing import List, overload
 
 EPSILON = 0.00001
 
@@ -13,6 +13,10 @@ def point(x: float, y: float, z: float) -> NDArray[np.float64]:
 
 def vector(x: float, y: float, z: float) -> NDArray[np.float64]:
     return np.array([x, y, z, 0.0], dtype=np.float64)
+
+
+def matrix(m: List[List[float]]) -> NDArray[np.float64]:
+    return np.array(m, dtype=np.float64, ndmin=2)
 
 
 @overload
@@ -44,3 +48,7 @@ def cross(a: NDArray[np.float64], b: NDArray[np.float64]) -> NDArray[np.float64]
     return vector(a[1] * b[2] - a[2] * b[1],
                   a[2] * b[0] - a[0] * b[2],
                   a[0] * b[1] - a[1] * b[0])
+
+
+def multiply(a: NDArray[np.float64], b: NDArray[np.float64]) -> NDArray[np.float64]:
+    return np.matmul(a, b)

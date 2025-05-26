@@ -1,7 +1,7 @@
 
 from numpy import float64
 
-from ghorman.utils import cross, equal, magnitude, normalize, point, vector
+from ghorman.utils import cross, equal, magnitude, matrix, multiply, normalize, point, vector
 
 
 def test_point():
@@ -86,3 +86,28 @@ def test_cross_product():
     v2 = vector(2, 3, 4)
     assert equal(cross(v1, v2), vector(-1, 2, -1))
     assert equal(cross(v2, v1), vector(1, -2, 1))
+
+
+def test_matrix_multiplication():
+    a = matrix([
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 8, 7, 6],
+        [5, 4, 3, 2],
+    ])
+    b = matrix([
+        [-2, 1, 2, 3],
+        [3, 2, 1, -1],
+        [4, 3, 6, 5],
+        [1, 2, 7, 8],
+    ])
+    c = multiply(a, b)
+
+    expected = matrix([
+        [20, 22, 50, 48],
+        [44, 54, 114, 108],
+        [40, 58, 110, 102],
+        [16, 26, 46, 42]
+    ])
+
+    assert equal(c, expected)

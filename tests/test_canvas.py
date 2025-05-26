@@ -1,8 +1,8 @@
 
-import os
 import pygame
 import pytest
 
+from pathlib import Path
 from typing import Generator
 
 from ghorman.canvas import pixel_at, write_pixel
@@ -70,5 +70,5 @@ def test_save_canvas(pygame_init: None):
         velocity += wind
         velocity += gravity
 
-    os.mkdir('./tmp')
+    Path('./tmp').mkdir(parents=True, exist_ok=True)
     pygame.image.save(canvas, './tmp/save_canvas.png')
