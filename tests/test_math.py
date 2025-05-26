@@ -111,3 +111,18 @@ def test_matrix_multiplication():
     ])
 
     assert equal(c, expected)
+
+
+def test_matrix_array_multiplication():
+    a = matrix([
+        [1, 2, 3, 4],
+        [2, 4, 4, 2],
+        [8, 6, 4, 1],
+        [0, 0, 0, 1],
+    ])
+    b = point(1, 2, 3)
+    c = multiply(a, b)
+
+    expected = point(18, 24, 33)
+
+    assert equal(c, expected)
