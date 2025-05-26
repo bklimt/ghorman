@@ -1,4 +1,5 @@
 
+import os
 import pygame
 import pytest
 
@@ -66,7 +67,8 @@ def test_save_canvas(pygame_init: None):
             write_pixel(canvas, x, y, color)
 
         p += velocity
-        p += wind
+        velocity += wind
         velocity += gravity
 
-    pygame.image.save(canvas, './temp.png')
+    os.mkdir('./tmp')
+    pygame.image.save(canvas, './tmp/save_canvas.png')
