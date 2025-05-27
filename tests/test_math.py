@@ -1,7 +1,10 @@
 
-from numpy import float64
+import pytest
 
-from ghorman.math import cofactor, cross, det, equal, identity, magnitude, matrix, minor, multiply, normalize, point, submatrix, vector
+from numpy import float64
+from numpy.linalg import LinAlgError
+
+from ghorman.math import cofactor, cross, det, equal, identity, inverse, magnitude, matrix, minor, multiply, normalize, point, submatrix, vector
 
 
 def test_point():
@@ -239,3 +242,24 @@ def test_determinant3x3():
     assert equal(cofactor(a, 0, 2), float64(210))
     assert equal(cofactor(a, 0, 3), float64(51))
     assert equal(det(a), float64(-4071))
+
+
+def test_inv():
+    a = matrix([
+        [6, 4, 4, 4],
+        [5, 5, 7, 6],
+        [4, -9, 3, -7],
+        [9, 1, 7, -6],
+    ])
+    assert equal(det(a), float64(-2120))
+    assert inverse(a) is not None
+
+    a = matrix([
+        [-4, 2, -2, -3],
+        [9, 6, 2, 6],
+        [0, -5, 1, -5],
+        [0, 0, 0, 0],
+    ])
+    assert equal(det(a), float64(0))
+    with pytest.raises(LinAlgError):
+        inverse(a)
