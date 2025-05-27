@@ -73,3 +73,12 @@ def submatrix(m: NDArray[np.float64], rowToRemove: int, columnToRemove: int) -> 
 
 def minor(m: NDArray[np.float64], row: int, column: int) -> np.float64:
     return det(submatrix(m, row, column))
+
+
+def cofactor(m: NDArray[np.float64], row: int, column: int) -> np.float64:
+    factor = 1 if (row + column) % 2 == 0 else -1
+    return minor(m, row, column) * factor
+
+
+def inverse(m: NDArray[np.float64]) -> NDArray[np.float64]:
+    return np.linalg.inv(m).view(dtype=np.float64)

@@ -1,7 +1,7 @@
 
 from numpy import float64
 
-from ghorman.math import cross, det, equal, identity, magnitude, matrix, minor, multiply, normalize, point, submatrix, vector
+from ghorman.math import cofactor, cross, det, equal, identity, magnitude, matrix, minor, multiply, normalize, point, submatrix, vector
 
 
 def test_point():
@@ -162,7 +162,7 @@ def test_transpose():
     assert equal(b, expected)
 
 
-def test_deteriminant():
+def test_deteriminant2x2():
     a = matrix([
         [1, 5],
         [-3, 2],
@@ -203,3 +203,39 @@ def test_minor():
     ])
 
     assert equal(minor(a, 1, 0), float64(25))
+
+
+def test_cofactor():
+    a = matrix([
+        [3, 5, 0],
+        [2, -1, -7],
+        [6, -1, 5],
+    ])
+    assert equal(minor(a, 0, 0), float64(-12))
+    assert equal(cofactor(a, 0, 0), float64(-12))
+    assert equal(minor(a, 1, 0), float64(25))
+    assert equal(cofactor(a, 1, 0), float64(-25))
+
+
+def test_determinant3x3():
+    a = matrix([
+        [1, 2, 6],
+        [-5, 8, -4],
+        [2, 6, 4],
+    ])
+    assert equal(cofactor(a, 0, 0), float64(56))
+    assert equal(cofactor(a, 0, 1), float64(12))
+    assert equal(cofactor(a, 0, 2), float64(-46))
+    assert equal(det(a), float64(-196))
+
+    a = matrix([
+        [-2, -8, 3, 5],
+        [-3, 1, 7, 3],
+        [1, 2, -9, 6],
+        [-6, 7, 7, -9],
+    ])
+    assert equal(cofactor(a, 0, 0), float64(690))
+    assert equal(cofactor(a, 0, 1), float64(447))
+    assert equal(cofactor(a, 0, 2), float64(210))
+    assert equal(cofactor(a, 0, 3), float64(51))
+    assert equal(det(a), float64(-4071))
