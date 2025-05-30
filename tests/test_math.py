@@ -263,3 +263,20 @@ def test_inv():
     assert equal(det(a), float64(0))
     with pytest.raises(LinAlgError):
         inverse(a)
+
+    a = matrix([
+        [-5, 2, 6, -8],
+        [1, -5, 1, 8],
+        [7, 7, -6, -7],
+        [1, -3, 7, 4],
+    ])
+    b = inverse(a)
+    assert equal(det(a), float64(532))
+    assert equal(cofactor(a, 2, 3), float64(-160))
+    assert equal(cofactor(a, 3, 2), float64(105))
+    assert equal(b, matrix([
+        [0.21805, 0.45113, 0.24060, -0.04511],
+        [-0.80827, -1.45677, -0.44361, 0.52068],
+        [-0.07895, -0.22368, -0.05263, 0.19737],
+        [-0.52256, -0.81391, -0.30075, 0.30639],
+    ]))
